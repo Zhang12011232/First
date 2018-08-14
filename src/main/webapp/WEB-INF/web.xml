@@ -3,16 +3,16 @@
                       http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1" metadata-complete="true">
 
-<!--  <context-param>
+  <context-param>
     <param-name>contextConfigLocation</param-name>
     <param-value>
-      classpath:spring/spring-mdao.xml,
+      classpath:spring/spring-dao.xml,
       classpath:spring/spring-service.xml
     </param-value>
   </context-param>
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-  </listener>-->
+  </listener>
   <servlet>
     <servlet-name>seckill-dispatcher</servlet-name>
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
