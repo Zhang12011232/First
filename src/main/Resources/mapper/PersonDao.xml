@@ -10,8 +10,8 @@
 
     <insert id="insertPersonInfo" parameterType="PersonInfo" useGeneratedKeys="true"
             keyProperty="personId" keyColumn="person_id">
-           insert into tb_person_info(person_name,pass_word,gender,create_time,last_edit_time)
-        values(#{personName},#{passWord},#{gender},#{createTime},#{lastEditTime})
+           insert into tb_person_info(person_name,pass_word,gender,phone,e_mail,create_time,last_edit_time)
+        values(#{personName},#{passWord},#{gender},#{phone},#{eMail},#{createTime},#{lastEditTime})
      </insert>
     <update id="updatePersonInfo" parameterType="PersonInfo">
         update tb_person_info
@@ -19,6 +19,8 @@
             <if test="personName != null">person_name=#{personName},</if>
             <if test="passWord != null">pass_word=#{passWord},</if>
             <if test="gender != null">gender=#{gender},</if>
+            <if test="phone != null">phone=#{phone},</if>
+            <if test="eMail != null">e_mail=#{eMail},</if>
             <if test="lastEditTime != null">last_edit_time=#{lastEditTime},</if>
         </set>
         where person_id=#{personId}

@@ -10,9 +10,15 @@ public class PersonInfo {
     private long personId;
     private String personName;
     private String passWord;
+    private String phone;
+    private String eMail;
     private Integer gender;
     private Date createTime;
     private Date lastEditTime;
+
+    public void setPersonId(long personId) {
+        this.personId = personId;
+    }
 
     public void setPersonName(String personName) {
         this.personName = personName;
@@ -26,17 +32,24 @@ public class PersonInfo {
         this.gender = gender;
     }
 
-    public void setCreateTime(Date createTime) {this.createTime = createTime;}
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public void seteMail(String eMail) {
+        this.eMail = eMail;
+    }
+
+    public void setCreateTime(Date createTime) { this.createTime = createTime; }
 
     public void setLastEditTime(Date lastEditTime) {
         this.lastEditTime = lastEditTime;
     }
 
-    public void setPersonId(long personId) {
-        this.personId = personId;
-    }
 
-    public long getPersonId() {return personId;}
+    public long getPersonId() {
+        return personId;
+    }
 
     public String getPersonName() {
         return personName;
@@ -48,6 +61,14 @@ public class PersonInfo {
 
     public Integer getGender() {
         return gender;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public String geteMail() {
+        return eMail;
     }
 
     public Date getCreateTime() {
