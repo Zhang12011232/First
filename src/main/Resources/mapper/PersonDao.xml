@@ -5,7 +5,7 @@
 <mapper namespace="com.shunanzhang.dao.PersonDao">
 
     <select id="queryPersonInfoById" parameterType="Long" resultType="PersonInfo">
-        select * from t_person_info where person_id=#{personId}
+        select * from tb_person_info where person_id=#{personId}
     </select>
 
     <insert id="insertPersonInfo" parameterType="PersonInfo" useGeneratedKeys="true"
