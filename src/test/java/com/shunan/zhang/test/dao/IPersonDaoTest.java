@@ -28,23 +28,25 @@ public class IPersonDaoTest extends BaseTest {
         personInfo.setLastEditTime(new Date());
         IPersonDao.insertPersonInfo(personInfo);
     }
+
     @Ignore
     @Test
-    public void queryPersonInfoById()  {
-        int x=0;
+    public void queryPersonInfoById() {
+        int x = 0;
         try {
             IPersonDao.queryPersonInfoById(12L);
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println(e instanceof RuntimeException);
         }
     }
-   @Ignore
+
+    @Ignore
     @Test
     public void updatePersonInfo() throws Exception {
         PersonInfo perinfo = new PersonInfo();
         perinfo.setPersonId(12L);
         perinfo.setPassWord("12011232");
-        int effectnum= IPersonDao.updatePersonInfo(perinfo);
+        int effectnum = IPersonDao.updatePersonInfo(perinfo);
         System.out.print(effectnum);
     }
 
@@ -52,24 +54,25 @@ public class IPersonDaoTest extends BaseTest {
     public void deletePersonInfo() throws Exception {
         IPersonDao.deletePersonInfo(13L);
     }
+
     @Ignore
     @Test
-    public void getPersonInfoTest(){
+    public void getPersonInfoTest() {
         PersonInfo perinfo = new PersonInfo();
         perinfo.setGender(1);
         perinfo.setPersonName("zh");
         SimpleDateFormat bartDateFormat = new SimpleDateFormat("MM-dd-yyyy");
-        Date dt=null;
+        Date dt = null;
         String dateStringToParse = "7-24-2018";
-        try{
-            dt=bartDateFormat.parse(dateStringToParse);
-        }catch(Exception e){
+        try {
+            dt = bartDateFormat.parse(dateStringToParse);
+        } catch (Exception e) {
 
         }
-        System.out.println("date"+dt);
+        System.out.println("date" + dt);
         perinfo.setCreateTime(dt);
-        List<PersonInfo> results= IPersonDao.getPersonInfoList( perinfo,0,2);
-        List<PersonInfo> results2= IPersonDao.getPersonInfoList( perinfo,2,2);
+        List<PersonInfo> results = IPersonDao.getPersonInfoList(perinfo, 0, 2);
+        List<PersonInfo> results2 = IPersonDao.getPersonInfoList(perinfo, 2, 2);
 
     }
 }
