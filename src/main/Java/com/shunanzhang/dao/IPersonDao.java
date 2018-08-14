@@ -5,7 +5,7 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-public interface PersonDao {
+public interface IPersonDao {
     PersonInfo queryPersonInfoById(long personId);
 
     int insertPersonInfo(PersonInfo personInfo);

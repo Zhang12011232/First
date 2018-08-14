@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.shunanzhang.dao.PersonDao">
+<mapper namespace="com.shunanzhang.dao.IPersonDao">
 
     <select id="queryPersonInfoById" parameterType="Long" resultType="PersonInfo">
         select * from tb_person_info where person_id=#{personId}
