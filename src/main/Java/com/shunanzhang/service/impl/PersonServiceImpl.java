@@ -3,6 +3,9 @@ package com.shunanzhang.service.impl;
 import com.shunanzhang.dao.IPersonDao;
 import com.shunanzhang.entity.PersonInfo;
 import com.shunanzhang.service.IPersonService;
+import com.shunanzhang.web.TaskController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,52 +13,85 @@ import java.util.List;
 
 @Service
 public class PersonServiceImpl implements IPersonService {
+
+    private static final Logger logger = LoggerFactory.getLogger(TaskController.class);
+
     @Autowired
-    IPersonDao personDao;
+    private IPersonDao personDao;
 
     @Override
     public PersonInfo getCustomerInfo(Long personId) {
 
-        PersonInfo personInfo = personDao.queryPersonInfoById(personId);
-
+        PersonInfo personInfo = null;
+        try {
+            personInfo = personDao.queryPersonInfoById(personId);
+            logger.info("query customer info:{}", personInfo);
+        } catch (Exception e) {
+            logger.error("query customer info error;{}", e);
+        }
 
         return personInfo;
     }
 
     @Override
-    public long addCustomer(PersonInfo personInfo) {
+    public long addCustomerInfo(PersonInfo personInfo) {
         int effectNum = -1;
-
-        effectNum = personDao.insertPersonInfo(personInfo);
-
+        logger.info("insert customer info:{}", personInfo);
+        try {
+            effectNum = personDao.insertPersonInfo(personInfo);
+            if (effectNum < 1) {
+                logger.info("insert customer info failed");
+                return -1;
+            }
+        } catch (Exception e) {
+            logger.error("insert customer info error:{}", e);
+        }
         return personInfo.getPersonId();
     }
 
     @Override
-    public int modifyCustomerInfo(PersonInfo personInfo) {
+    public int updateCustomerInfo(PersonInfo personInfo) {
         int effectNum = -1;
-
-        effectNum =personDao.updatePersonInfo(personInfo);
-
+        logger.info("upate customer info,the customer id:{}", personInfo.getPersonId());
+        try {
+            effectNum = personDao.updatePersonInfo(personInfo);
+            if (effectNum < 1) {
+                logger.info("update customer info failed");
+                return -1;
+            }
+        } catch (Exception e) {
+            logger.error("update customer info error;{}", e);
+        }
         return effectNum;
     }
 
     @Override
-    public int deleteCustomer(Long personId) {
+    public int deleteCustomerInfo(Long personId) {
 
         int effectNum = -1;
-
-        effectNum = personDao.deletePersonInfo(personId);
-
+        logger.info("dlete customer info,the customer id:{}", personId);
+        try {
+            effectNum = personDao.deletePersonInfo(personId);
+            if (effectNum < 1) {
+                logger.info("delete customer info failed");
+                return -1;
+            }
+        } catch (Exception e) {
+            logger.error("delete customer info error;{}", e);
+        }
         return effectNum;
     }
 
     @Override
     public List<PersonInfo> getCustomerInfoList(PersonInfo personCondition, int rowIndex, int pageSize) {
         List<PersonInfo> customerInfoResults = null;
-
-        customerInfoResults = personDao.getPersonInfoList(personCondition, rowIndex, pageSize);
-
+        logger.info("get customer info list,the personCondition : {}, the rowIndex :{},the pageSize:{}",
+                personCondition, rowIndex, pageSize);
+        try {
+            customerInfoResults = personDao.getPersonInfoList(personCondition, rowIndex, pageSize);
+        } catch (Exception e) {
+            logger.error("get customer info list error;{}", e);
+        }
         return customerInfoResults;
     }
 }

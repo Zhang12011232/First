@@ -7,11 +7,11 @@ import java.util.List;
 public interface IPersonService {
     PersonInfo getCustomerInfo(Long personId);
 
-    long addCustomer(PersonInfo personInfo);
+    long addCustomerInfo(PersonInfo personInfo);
 
-    int modifyCustomerInfo(PersonInfo personInfo);
+    int updateCustomerInfo(PersonInfo personInfo);
 
-    int deleteCustomer(Long personId);
+    int deleteCustomerInfo(Long personId);
 
     List<PersonInfo> getCustomerInfoList(PersonInfo personCondition, int rowIndex, int pageSize);
 }

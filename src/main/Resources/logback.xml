@@ -70,7 +70,7 @@
 
     </appender>
 
-    <logger name="com.qunar.flight.fresh" level="DEBUG" additivity="true">
+    <logger name="com.shunanzhang" level="DEBUG" additivity="true">
         <appender-ref ref="debugAppender"/>
         <appender-ref ref="infoAppender"/>
         <appender-ref ref="errorAppender"/>
