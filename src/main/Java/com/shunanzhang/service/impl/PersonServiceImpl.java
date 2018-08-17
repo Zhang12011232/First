@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -52,7 +53,7 @@ public class PersonServiceImpl implements IPersonService {
     @Override
     public int updateCustomerInfo(PersonInfo personInfo) {
         int effectNum = -1;
-        logger.info("upate customer info,the customer id:{}", personInfo.getPersonId());
+        logger.info("update customer info:{}", personInfo);
         try {
             effectNum = personDao.updatePersonInfo(personInfo);
             if (effectNum < 1) {
@@ -94,4 +95,5 @@ public class PersonServiceImpl implements IPersonService {
         }
         return customerInfoResults;
     }
+
 }
