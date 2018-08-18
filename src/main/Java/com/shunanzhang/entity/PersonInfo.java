@@ -1,6 +1,7 @@
 package com.shunanzhang.entity;
 
 
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 /**
@@ -8,6 +9,7 @@ import java.util.Date;
  */
 public class PersonInfo {
     private long personId;
+    @Size(min=6,max=30,message = "the length of name is error")
     private String personName;
     private String passWord;
     private String phone;

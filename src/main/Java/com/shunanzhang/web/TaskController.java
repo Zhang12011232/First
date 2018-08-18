@@ -7,12 +7,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.Errors;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -33,8 +37,6 @@ public class TaskController {
         logger.debug("test");
         logger.error("test");
 
-        System.out.println(personInfo.getPersonName());
-        System.out.println(personInfo.getPassWord());
         result.put("rest", "success");
 
         return result;
@@ -56,8 +58,8 @@ public class TaskController {
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     @ResponseBody
-    private Map<String, Object> registerCustomer(@RequestBody PersonInfo personInfo) {
-        if (personInfo!=null) {
+    private Map<String, Object> registerCustomer(@Valid @RequestBody PersonInfo personInfo) {
+        if (personInfo != null) {
             logger.info("register customer ,name:{},gender:{}",
                     personInfo.getPersonName(), personInfo.getGender());
         }
@@ -103,5 +105,45 @@ public class TaskController {
         }
 
         return modelMap;
+    }
+
+    @RequestMapping(value = "/delete/{personid}", method = RequestMethod.GET)
+    @ResponseBody
+    private Map<String, Object> dropCustomer(@PathVariable("personid") Long personId) {
+
+        logger.info("delete customer info :customer_id:{} ", personId);
+        int effectNum=-1;
+        Map<String, Object> modelMap = new HashMap<String, Object>();
+
+        effectNum = iPersonService.deleteCustomerInfo(personId);
+
+        if (effectNum >= 1) {
+            modelMap.put("success", true);
+        } else {
+            modelMap.put("success", false);
+        }
+        return modelMap;
+    }
+
+    @RequestMapping(value = "/customerinfolist", method = RequestMethod.GET)
+    @ResponseBody
+    private Map<String, Object> getCustomerInfoList(@RequestBody PersonInfo personCondition, @RequestParam("rowIndex") int rowIndex,
+                                                    @RequestParam("pageSize") int pageSize) {
+
+        Map<String, Object> modelMap = new HashMap<String, Object>();
+        logger.info("customerinfolist personCondition: {}, rowIndex:{}, pageSize{}"
+                , personCondition, rowIndex, pageSize);
+
+        List<PersonInfo> customerInfoList = null;
+        customerInfoList = iPersonService.getCustomerInfoList(personCondition, rowIndex, pageSize);
+        modelMap.put("date", customerInfoList);
+        if (customerInfoList != null && customerInfoList.size() >= 0) {
+            modelMap.put("success", true);
+        } else {
+            modelMap.put("success", false);
+        }
+
+        return modelMap;
+
     }
 }
