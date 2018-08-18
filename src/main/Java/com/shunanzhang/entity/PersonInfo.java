@@ -1,6 +1,8 @@
 package com.shunanzhang.entity;
 
 
+import org.hibernate.validator.constraints.Email;
+
 import javax.validation.constraints.Size;
 import java.util.Date;
 
@@ -13,6 +15,7 @@ public class PersonInfo {
     private String personName;
     private String passWord;
     private String phone;
+    @Email
     private String eMail;
     private Integer gender;
     private Date createTime;
