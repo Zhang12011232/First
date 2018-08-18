@@ -1,4 +1,6 @@
-package com.shunanzhang.valid.validation;
+package com.shunanzhang.valid.validation.hanlder;
+
+import com.shunanzhang.valid.validation.annotation.MyEmail;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;

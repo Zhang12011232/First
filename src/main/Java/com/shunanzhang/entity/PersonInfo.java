@@ -1,6 +1,8 @@
 package com.shunanzhang.entity;
 
 
+import com.shunanzhang.valid.group.GroupA;
+import com.shunanzhang.valid.validation.annotation.MyEmail;
 import org.hibernate.validator.constraints.Email;
 
 import javax.validation.constraints.Size;
@@ -10,13 +12,20 @@ import java.util.Date;
  * Created by shunan.zhang on 2018/7/20.
  */
 public class PersonInfo {
+
     private long personId;
-    @Size(min=6,max=30,message = "the length of name is error")
+
+    @Size(min=6,max=30,groups = {GroupA.class},message = "the length of name is error")
     private String personName;
+
+    @Size(min=6,max=30,groups = {GroupA.class},message = "the length of password is error")
     private String passWord;
+
     private String phone;
-    @Email
+
+    @MyEmail(groups = {GroupA.class},message = "the format of email is error")
     private String eMail;
+
     private Integer gender;
     private Date createTime;
     private Date lastEditTime;

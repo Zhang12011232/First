@@ -2,6 +2,7 @@ package com.shunanzhang.web;
 
 import com.shunanzhang.entity.PersonInfo;
 import com.shunanzhang.service.IPersonService;
+import com.shunanzhang.valid.group.GroupA;
 import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.validation.FieldError;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -58,7 +60,7 @@ public class TaskController {
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     @ResponseBody
-    private Map<String, Object> registerCustomer(@Valid @RequestBody PersonInfo personInfo) {
+    private Map<String, Object> registerCustomer(@Validated(value = {GroupA.class}) @RequestBody PersonInfo personInfo) {
         if (personInfo != null) {
             logger.info("register customer ,name:{},gender:{}",
                     personInfo.getPersonName(), personInfo.getGender());
@@ -112,7 +114,7 @@ public class TaskController {
     private Map<String, Object> dropCustomer(@PathVariable("personid") Long personId) {
 
         logger.info("delete customer info :customer_id:{} ", personId);
-        int effectNum=-1;
+        int effectNum = -1;
         Map<String, Object> modelMap = new HashMap<String, Object>();
 
         effectNum = iPersonService.deleteCustomerInfo(personId);

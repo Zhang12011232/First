@@ -1,4 +1,4 @@
 package com.shunanzhang.valid.group;
 
-public class GroupB {
+public interface GroupB {
 }

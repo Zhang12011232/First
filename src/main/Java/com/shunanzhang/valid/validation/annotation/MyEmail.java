@@ -1,9 +1,11 @@
-package com.shunanzhang.valid.validation;
+package com.shunanzhang.valid.validation.annotation;
 
 //
 // Source code recreated from a .class file by IntelliJ IDEA
 // (powered by Fernflower decompiler)
 //
+
+import com.shunanzhang.valid.validation.hanlder.MyEmailValidation;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
