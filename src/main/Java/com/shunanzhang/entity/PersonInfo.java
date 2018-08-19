@@ -2,8 +2,8 @@ package com.shunanzhang.entity;
 
 
 import com.shunanzhang.valid.group.GroupA;
-import com.shunanzhang.valid.validation.annotation.MyEmail;
-import org.hibernate.validator.constraints.Email;
+import com.shunanzhang.valid.validation.annotation.EmaiFormatl;
+import com.shunanzhang.valid.validation.annotation.NameFormat;
 
 import javax.validation.constraints.Size;
 import java.util.Date;
@@ -15,7 +15,8 @@ public class PersonInfo {
 
     private long personId;
 
-    @Size(min=6,max=30,groups = {GroupA.class},message = "the length of name is error")
+    //@Size(min=6,max=30,groups = {GroupA.class},message = "the length of name is error")
+    @NameFormat(groups = {GroupA.class},message = "the length of name is error")
     private String personName;
 
     @Size(min=6,max=30,groups = {GroupA.class},message = "the length of password is error")
@@ -23,7 +24,7 @@ public class PersonInfo {
 
     private String phone;
 
-    @MyEmail(groups = {GroupA.class},message = "the format of email is error")
+    @EmaiFormatl(groups = {GroupA.class},message = "the format of email is error")
     private String eMail;
 
     private Integer gender;

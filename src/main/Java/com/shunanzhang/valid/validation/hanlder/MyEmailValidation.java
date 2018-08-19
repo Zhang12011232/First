@@ -1,13 +1,13 @@
 package com.shunanzhang.valid.validation.hanlder;
 
-import com.shunanzhang.valid.validation.annotation.MyEmail;
+import com.shunanzhang.valid.validation.annotation.EmaiFormatl;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-public class MyEmailValidation implements ConstraintValidator<MyEmail, String> {
+public class MyEmailValidation implements ConstraintValidator<EmaiFormatl, String> {
     @Override
-    public void initialize(MyEmail annotation) {
+    public void initialize(EmaiFormatl annotation) {
 
     }
 
