@@ -2,7 +2,7 @@ package com.shunanzhang.entity;
 
 
 import com.shunanzhang.valid.group.GroupA;
-import com.shunanzhang.valid.validation.annotation.EmaiFormatl;
+import com.shunanzhang.valid.validation.annotation.EmaiFormat;
 import com.shunanzhang.valid.validation.annotation.NameFormat;
 
 import javax.validation.constraints.Size;
@@ -24,7 +24,7 @@ public class PersonInfo {
 
     private String phone;
 
-    @EmaiFormatl(groups = {GroupA.class},message = "the format of email is error")
+    @EmaiFormat(groups = {GroupA.class},message = "the format of email is error")
     private String eMail;
 
     private Integer gender;

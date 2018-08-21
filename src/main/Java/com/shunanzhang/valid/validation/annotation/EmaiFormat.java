@@ -5,7 +5,7 @@ package com.shunanzhang.valid.validation.annotation;
 // (powered by Fernflower decompiler)
 //
 
-import com.shunanzhang.valid.validation.hanlder.MyEmailValidation;
+import com.shunanzhang.valid.validation.hanlder.EmailFormatValidation;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -17,10 +17,10 @@ import javax.validation.Payload;
 
 
 @Documented
-@Constraint(validatedBy = {MyEmailValidation.class})
+@Constraint(validatedBy = {EmailFormatValidation.class})
 @Target({ElementType.METHOD, ElementType.FIELD, ElementType.ANNOTATION_TYPE, ElementType.CONSTRUCTOR, ElementType.PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface EmaiFormatl {
+public @interface EmaiFormat {
     String message() default "{org.hibernate.validator.constraints.Email.message}";
 
     Class<?>[] groups() default {};
