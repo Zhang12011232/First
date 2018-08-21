@@ -14,4 +14,6 @@ public interface IPersonService {
     int deleteCustomerInfo(Long personId);
 
     List<PersonInfo> getCustomerInfoList(PersonInfo personCondition, int rowIndex, int pageSize);
+
+    int insertCusyomerInfoList(List<PersonInfo>personInfoList);
 }

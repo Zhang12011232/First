@@ -8,6 +8,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
@@ -95,5 +98,27 @@ public class PersonServiceImpl implements IPersonService {
         }
         return customerInfoResults;
     }
+    @Override
+    @Transactional(propagation = Propagation.REQUIRES_NEW,isolation = Isolation.READ_COMMITTED)
+    public int insertCusyomerInfoList(List<PersonInfo>personInfoList){
+        int effectNum=-1;
+        int count=0;
+        if(personInfoList==null||personInfoList.size()==0){
+            return count;
+        }
+        try{
+            for(PersonInfo personInfo:personInfoList){
+                effectNum=personDao.insertPersonInfo(personInfo);
+               if(effectNum<1){
+                    throw new RuntimeException("insert insertCusyomerInfoList failed");
+               }
+                count++;
+            }
 
+        }catch(Exception e){
+              logger.error("insert insertCusyomerInfoList error:{}",e);
+        }
+        return count;
+
+    }
 }

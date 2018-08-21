@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -67,5 +68,24 @@ public class IPersonServiceTest extends BaseTest {
         //System.out.println("date"+dt);
         perinfo.setCreateTime(dt);
         List<PersonInfo> results=personService.getCustomerInfoList(perinfo,0,2);
+    }
+    @Test
+    public void insertCustomerInfoListTest(){
+        List<PersonInfo>personInfoList=new ArrayList<PersonInfo>();
+        PersonInfo personInfo1 = new PersonInfo();
+        personInfo1.setPersonName("zhang");
+        personInfo1.setPassWord("111111");
+        personInfo1.setGender(1);
+        personInfo1.setCreateTime(new Date());
+        personInfo1.setLastEditTime(new Date());
+        PersonInfo personInfo2 = new PersonInfo();
+        personInfo2.setPersonName("nan");
+        personInfo2.setPassWord("12011232");
+        personInfo2.setGender(0);
+        personInfo2.setCreateTime(new Date());
+        personInfo2.setLastEditTime(new Date());
+        personInfoList.add(personInfo1);
+        personInfoList.add(personInfo2);
+        personService.insertCusyomerInfoList(personInfoList);
     }
 }
