@@ -1,6 +1,7 @@
 package com.shunanzhang.entity;
 
 
+import com.shunanzhang.enums.SexEnum;
 import com.shunanzhang.valid.group.Group;
 import com.shunanzhang.valid.group.GroupA;
 import com.shunanzhang.valid.group.GroupB;
@@ -33,7 +34,7 @@ public class PersonInfo {
     @EmaiFormat(groups = {GroupA.class},message = "the format of email is error")
     private String eMail;
 
-    private Integer gender;
+    private SexEnum gender;
     private Date createTime;
     private Date lastEditTime;
 
@@ -49,7 +50,7 @@ public class PersonInfo {
         this.passWord = passWord;
     }
 
-    public void setGender(Integer gender) {
+    public void setGender(SexEnum gender) {
         this.gender = gender;
     }
 
@@ -80,7 +81,7 @@ public class PersonInfo {
         return passWord;
     }
 
-    public Integer getGender() {
+    public SexEnum getGender() {
         return gender;
     }
 

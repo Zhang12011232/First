@@ -2,6 +2,7 @@ package com.shunan.zhang.test.service;
 
 import com.shunan.zhang.test.BaseTest;
 import com.shunanzhang.entity.PersonInfo;
+import com.shunanzhang.enums.SexEnum;
 import com.shunanzhang.service.IPersonService;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -19,13 +20,14 @@ public class IPersonServiceTest extends BaseTest {
     @Ignore
     @Test
     public void addCustomerTest() {
-        PersonInfo personInfoinfo = new PersonInfo();
-        personInfoinfo.setPersonName("zhang");
-        personInfoinfo.setPassWord("111111");
-        personInfoinfo.setGender(1);
-        personInfoinfo.setCreateTime(new Date());
-        personInfoinfo.setLastEditTime(new Date());
-        personService.addCustomerInfo(personInfoinfo);
+        PersonInfo personInfo = new PersonInfo();
+        personInfo.setPersonName("zhang");
+        personInfo.setPassWord("111111");
+        SexEnum gender=SexEnum.getSexById(1);
+        personInfo.setGender(gender);;
+        personInfo.setCreateTime(new Date());
+        personInfo.setLastEditTime(new Date());
+        personService.addCustomerInfo(personInfo);
     }
 
     @Ignore
@@ -38,13 +40,15 @@ public class IPersonServiceTest extends BaseTest {
     @Ignore
     @Test
     public void updateCustomerInfoTest() {
-        PersonInfo perinfo = new PersonInfo();
-        perinfo.setPersonName("shunan.zhang");
-        perinfo.seteMail("qq.com");
-        perinfo.setPhone("123456");
-        perinfo.setPersonId(13L);
-        perinfo.setLastEditTime(new Date());
-        int effectNum = personService.updateCustomerInfo(perinfo);
+        PersonInfo personInfo = new PersonInfo();
+        personInfo.setPersonName("shunan.zhang");
+        personInfo.seteMail("qq.com");
+        personInfo.setPhone("123456");
+        SexEnum gender=SexEnum.getSexById(1);
+        personInfo.setGender(gender);
+        personInfo.setPersonId(12L);
+        personInfo.setLastEditTime(new Date());
+        int effectNum = personService.updateCustomerInfo(personInfo);
         System.out.println(effectNum);
     }
 
@@ -57,9 +61,10 @@ public class IPersonServiceTest extends BaseTest {
     @Ignore
     @Test
     public void getCustomerInfoListTest() {
-        PersonInfo perinfo = new PersonInfo();
-        perinfo.setGender(1);
-        perinfo.setPersonName("zh");
+        PersonInfo personInfo = new PersonInfo();
+        SexEnum gender=SexEnum.getSexById(1);
+        personInfo.setGender(gender);
+        personInfo.setPersonName("zh");
         SimpleDateFormat bartDateFormat = new SimpleDateFormat("MM-dd-yyyy");
         Date dt = null;
         String dateStringToParse = "8-15-2018";
@@ -69,23 +74,26 @@ public class IPersonServiceTest extends BaseTest {
 
         }
         //System.out.println("date"+dt);
-        perinfo.setCreateTime(dt);
-        List<PersonInfo> results = personService.getCustomerInfoList(perinfo, 0, 2);
+        personInfo.setCreateTime(dt);
+        List<PersonInfo> results = personService.getCustomerInfoList(personInfo, 0, 2);
     }
 
+ //   @Ignore
     @Test
     public void insertCustomerInfoListTest() {
         List<PersonInfo> personInfoList = new ArrayList<PersonInfo>();
         PersonInfo personInfo1 = new PersonInfo();
         personInfo1.setPersonName("zhang");
         personInfo1.setPassWord("111111");
-        personInfo1.setGender(1);
+        SexEnum gender=SexEnum.getSexById(1);
+        personInfo1.setGender(gender);
         personInfo1.setCreateTime(new Date());
         personInfo1.setLastEditTime(new Date());
         PersonInfo personInfo2 = new PersonInfo();
         personInfo2.setPersonName("nan");
         personInfo2.setPassWord("12011232");
-        personInfo2.setGender(0);
+         gender=SexEnum.getSexById(0);
+        personInfo2.setGender(gender);
         personInfo2.setCreateTime(new Date());
         personInfo2.setLastEditTime(new Date());
         personInfoList.add(personInfo1);

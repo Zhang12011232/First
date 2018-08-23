@@ -16,4 +16,8 @@
         <!-- 打印查询语句 -->
         <setting name="logImpl" value="STDOUT_LOGGING"/>
     </settings>
+    <typeHandlers>
+        <typeHandler jdbcType="INTEGER" javaType="com.shunanzhang.enums.SexEnum"
+                handler="com.shunanzhang.typehandler.SexEnmuTypeHandler"/>
+    </typeHandlers>
 </configuration>

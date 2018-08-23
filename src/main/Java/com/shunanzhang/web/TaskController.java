@@ -1,6 +1,7 @@
 package com.shunanzhang.web;
 
 import com.shunanzhang.entity.PersonInfo;
+import com.shunanzhang.enums.SexEnum;
 import com.shunanzhang.service.IPersonService;
 import com.shunanzhang.valid.group.Group;
 import com.shunanzhang.valid.group.GroupA;
@@ -42,7 +43,10 @@ public class TaskController {
         PersonInfo personInfo1=new  PersonInfo();
         personInfo1.setPersonName("zhang");
         personInfo1.setPassWord("123");
+        SexEnum gender=SexEnum.getSexById(1);
+        personInfo1.setGender(gender);
         personInfoList.add(personInfo1);
+
         PersonInfo personInfo2=new  PersonInfo();
         personInfo2.setPersonName("shu");
         personInfo2.setPassWord("12323");
