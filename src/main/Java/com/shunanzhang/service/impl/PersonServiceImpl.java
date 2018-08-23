@@ -39,8 +39,10 @@ public class PersonServiceImpl implements IPersonService {
 
     @Override
     public long addCustomerInfo(PersonInfo personInfo) {
+
         int effectNum = -1;
         logger.info("insert customer info:{}", personInfo);
+
         try {
             effectNum = personDao.insertPersonInfo(personInfo);
             if (effectNum < 1) {
@@ -88,9 +90,11 @@ public class PersonServiceImpl implements IPersonService {
 
     @Override
     public List<PersonInfo> getCustomerInfoList(PersonInfo personCondition, int rowIndex, int pageSize) {
+
         List<PersonInfo> customerInfoResults = null;
         logger.info("get customer info list,the personCondition : {}, the rowIndex :{},the pageSize:{}",
                 personCondition, rowIndex, pageSize);
+
         try {
             customerInfoResults = personDao.getPersonInfoList(personCondition, rowIndex, pageSize);
         } catch (Exception e) {
@@ -98,26 +102,31 @@ public class PersonServiceImpl implements IPersonService {
         }
         return customerInfoResults;
     }
+
     @Override
-    @Transactional(propagation = Propagation.REQUIRES_NEW,isolation = Isolation.READ_COMMITTED)
-    public int insertCusyomerInfoList(List<PersonInfo>personInfoList){
-        int effectNum=-1;
-        int count=0;
-        if(personInfoList==null||personInfoList.size()==0){
+    @Transactional(propagation = Propagation.REQUIRES_NEW, isolation = Isolation.READ_COMMITTED)
+    public int insertCusyomerInfoList(List<PersonInfo> personInfoList) {
+
+        int effectNum = -1;
+        int count = 0;
+
+        if (personInfoList == null || personInfoList.size() == 0) {
             return count;
         }
-        try{
-            for(PersonInfo personInfo:personInfoList){
-                effectNum=personDao.insertPersonInfo(personInfo);
-               if(effectNum<1){
+
+        try {
+            for (PersonInfo personInfo : personInfoList) {
+                effectNum = personDao.insertPersonInfo(personInfo);
+                if (effectNum < 1) {
                     throw new RuntimeException("insert insertCusyomerInfoList failed");
-               }
+                }
                 count++;
             }
 
-        }catch(Exception e){
-              logger.error("insert insertCusyomerInfoList error:{}",e);
+        } catch (Exception e) {
+            logger.error("insert insertCusyomerInfoList error:{}", e);
         }
+
         return count;
 
     }

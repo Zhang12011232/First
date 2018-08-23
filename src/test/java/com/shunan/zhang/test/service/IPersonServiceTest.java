@@ -15,6 +15,7 @@ import java.util.List;
 public class IPersonServiceTest extends BaseTest {
     @Autowired
     IPersonService personService;
+
     @Ignore
     @Test
     public void addCustomerTest() {
@@ -46,32 +47,35 @@ public class IPersonServiceTest extends BaseTest {
         int effectNum = personService.updateCustomerInfo(perinfo);
         System.out.println(effectNum);
     }
+
     @Test
     public void deleteCustomer() {
         int effectNum = personService.deleteCustomerInfo(13L);
         System.out.println(effectNum);
     }
+
     @Ignore
     @Test
-    public void getCustomerInfoListTest(){
+    public void getCustomerInfoListTest() {
         PersonInfo perinfo = new PersonInfo();
         perinfo.setGender(1);
         perinfo.setPersonName("zh");
         SimpleDateFormat bartDateFormat = new SimpleDateFormat("MM-dd-yyyy");
-        Date dt=null;
+        Date dt = null;
         String dateStringToParse = "8-15-2018";
-        try{
-            dt=bartDateFormat.parse(dateStringToParse);
-        }catch(Exception e){
+        try {
+            dt = bartDateFormat.parse(dateStringToParse);
+        } catch (Exception e) {
 
         }
         //System.out.println("date"+dt);
         perinfo.setCreateTime(dt);
-        List<PersonInfo> results=personService.getCustomerInfoList(perinfo,0,2);
+        List<PersonInfo> results = personService.getCustomerInfoList(perinfo, 0, 2);
     }
+
     @Test
-    public void insertCustomerInfoListTest(){
-        List<PersonInfo>personInfoList=new ArrayList<PersonInfo>();
+    public void insertCustomerInfoListTest() {
+        List<PersonInfo> personInfoList = new ArrayList<PersonInfo>();
         PersonInfo personInfo1 = new PersonInfo();
         personInfo1.setPersonName("zhang");
         personInfo1.setPassWord("111111");

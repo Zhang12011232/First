@@ -1,10 +1,14 @@
 package com.shunanzhang.entity;
 
 
+import com.shunanzhang.valid.group.Group;
 import com.shunanzhang.valid.group.GroupA;
+import com.shunanzhang.valid.group.GroupB;
 import com.shunanzhang.valid.validation.annotation.EmaiFormat;
 import com.shunanzhang.valid.validation.annotation.NameFormat;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
@@ -13,13 +17,15 @@ import java.util.Date;
  */
 public class PersonInfo {
 
+    @Min(value=1,groups={GroupB.class},message="the personId less than 1")
     private long personId;
 
-    //@Size(min=6,max=30,groups = {GroupA.class},message = "the length of name is error")
+    @Size(min=6,max=30,groups = {GroupB.class},message = "the length of name is error")
     @NameFormat(groups = {GroupA.class},message = "the length of name is error")
     private String personName;
 
-    @Size(min=6,max=30,groups = {GroupA.class},message = "the length of password is error")
+    @NotNull(groups={GroupA.class})
+    @Size(min=6,max=30,groups = {GroupA.class,GroupB.class},message = "the length of password is error")
     private String passWord;
 
     private String phone;
