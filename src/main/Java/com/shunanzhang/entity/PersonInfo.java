@@ -33,7 +33,7 @@ public class PersonInfo {
 
     @EmaiFormat(groups = {GroupA.class},message = "the format of email is error")
     private String eMail;
-
+    @NotNull(groups={GroupA.class},message = "the gender is needed")
     private SexEnum gender;
     private Date createTime;
     private Date lastEditTime;

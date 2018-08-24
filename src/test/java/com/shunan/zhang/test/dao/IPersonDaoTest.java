@@ -31,36 +31,36 @@ public class IPersonDaoTest extends BaseTest {
         IPersonDao.insertPersonInfo(personInfo);
     }
 
-    @Ignore
+ //   @Ignore
     @Test
     public void queryPersonInfoById() {
         int x = 0;
         try {
-         PersonInfo personInfo= IPersonDao.queryPersonInfoById(12L);
+         PersonInfo personInfo= IPersonDao.queryPersonInfoById(13L);
          System.out.println(personInfo.getGender().getGender());
         } catch (Exception e) {
             System.out.println(e instanceof RuntimeException);
         }
     }
 
-   @Ignore
+  @Ignore
     @Test
     public void updatePersonInfo() throws Exception {
         PersonInfo personInfo = new PersonInfo();
         personInfo.setPersonId(12L);
         personInfo.setPassWord("12011232");
-        SexEnum gender=SexEnum.getSexById(0);
-        personInfo.setGender(gender);
+       /* SexEnum gender=SexEnum.getSexById(0);
+        personInfo.setGender(gender);*/
         int effectnum = IPersonDao.updatePersonInfo(personInfo);
         System.out.print(effectnum);
     }
-
+     @Ignore
     @Test
     public void deletePersonInfo() throws Exception {
         IPersonDao.deletePersonInfo(13L);
     }
 
-   // @Ignore
+    @Ignore
     @Test
     public void getPersonInfoTest() {
         PersonInfo personInfo = new PersonInfo();
